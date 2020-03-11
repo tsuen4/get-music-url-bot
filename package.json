@@ -1,0 +1,15 @@
+{
+  "name": "discord-get-music-url",
+  "version": "1.0.0",
+  "description": "Discord のチャットに貼られた URL をどこかにまとめる何か",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tsuen4",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.0.2",
+    "firebase": "^7.10.0"
+  }
+}
