@@ -3,7 +3,7 @@ const firebase = require('./firebase')
 const getYouTubeInfo = require('./get-youtube-info')
 const getSoundCloudInfo = require('./get-soundcloud-info')
 
-const regYouTube = [/.*e\/(.*)/, /.*watch\?v=(.*)/]
+const regYouTube = [/.*e\/([^&]*)&?.*$/, /.*watch\?v=([^&]*)&?.*/]
 const regSoundCloud = /(https:\/\/soundcloud\.com\/.+)/
 
 const reqYouTube = {
