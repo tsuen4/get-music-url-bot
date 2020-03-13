@@ -25,12 +25,13 @@ const getSoundCloudInfo = async (URL) => {
     })
     const page = await browser.newPage()
 
-    const info = await SoundCloudScraping(page, URL)
-    // console.log(info.artist)
-    // console.log(info.title)
+    const getData = await SoundCloudScraping(page, URL)
+    getData.url = URL
+    // console.log(getData.artist)
+    // console.log(getData.title)
 
     browser.close()
-    return info
+    return getData
   } catch (e) {
     console.log(`Not found URL: ${URL}`)
     // console.error(e)
