@@ -4,14 +4,14 @@
   "description": "Discord のチャットに貼られた URL をどこかにまとめる何か",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "tsuen4",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.0.2",
     "dotenv": "^8.2.0",
-    "firebase": "^7.10.0",
+    "firebase-admin": "^8.10.0",
     "puppeteer": "^2.1.1"
   }
 }
