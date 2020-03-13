@@ -1,21 +1,12 @@
 const https = require('https')
 
-const YouTubeJSON = (data, want) => {
-  try {
-    const json = JSON.parse(data)
-    if (want == '') {
-      return (json)
-    } else if (typeof json[want] == 'undefined') {
-      return (`Error: Not found key => ${want}`)
-    } else {
-      return (json[want])
-    }
-  } catch (err) {
-    return (`Error: Not REST API`)
-  }
+const reqYouTube = {
+  base: 'https://www.googleapis.com/youtube/v3/videos?id=',
+  fields: 'items(snippet(title,channelTitle))',
+  part: 'snippet'
 }
 
-const getYouTubeInfo = async (URI, want = '', service) => {
+const getJSON = async (URI, want) => {
   if (URI.match(/^.+:\/+$/)) {
     return `Error: Invalid URL => ${URI}`
   }
@@ -28,11 +19,7 @@ const getYouTubeInfo = async (URI, want = '', service) => {
           data += chunk
         })
         res.on('end', () => {
-          if (service === 'youtube') {
-            resolve(YouTubeJSON(data, want))
-          } else if (service === 'soundcloud') {
-            console.log(data)
-          }
+          resolve(YouTubeJSON(data, want))
         })
       }).on('error', (err) => {
         reject(`Error: Failed connection => ${URI}`)
@@ -43,4 +30,34 @@ const getYouTubeInfo = async (URI, want = '', service) => {
   return await wrappedGet(URI, want).catch(err => err)
 }
 
-module.exports = getYouTubeInfo
+const YouTubeJSON = (data, want) => {
+  try {
+    const json = JSON.parse(data)
+    if (want == '') {
+      return (json)
+    } else if (json[want] === undefined) {
+      return (`Error: Not found key => ${want}`)
+    } else {
+      return (json[want])
+    }
+  } catch (err) {
+    return (`Error: Not REST API`)
+  }
+}
+
+const getYouTubeInfoById = async (YouTubeId, APIKey) => {
+  const reqURL = `${reqYouTube.base}${YouTubeId}&key=${APIKey}&fields=${reqYouTube.fields}&part=${reqYouTube.part}`
+  const YouTubeURL = `https://youtu.be/${YouTubeId}`
+  const getData = (await getJSON(reqURL, 'items'))[0]
+  if (getData === undefined) {
+    console.log(`Not found URL: https://youtu.be/${YouTubeId}`)
+    return null
+  }
+  return {
+    url: YouTubeURL,
+    channel: getData.snippet.channelTitle,
+    title: getData.snippet.title
+  }
+}
+
+module.exports = getYouTubeInfoById

@@ -1,19 +1,23 @@
 const puppeteer = require('puppeteer')
 
-const getMusicInfo = async (page, url) => {
-  await page.goto(url)
+const SoundCloudScraping = async (page, URL) => {
+  await page.goto(URL)
   return await page.evaluate(() => {
-    const getData = {
-      artist: document.querySelector('.soundTitle__username').innerText,
-      title: document.querySelector('meta[property="og:title"]').getAttribute('content')
-    };
-    return getData
+    const returnData = {
+      url: URL,
+      artist: null,
+      title: null
+    }
+    // 見つからなかったらエラー吐きます
+    returnData.artist = document.querySelector('.soundTitle__username').innerText
+    returnData.title = document.querySelector('meta[property="og:title"]').getAttribute('content')
+    return returnData
   })
 }
 
-const getSoundCloudInfo = async (url) => {
+const getSoundCloudInfo = async (URL) => {
   try {
-    const browser = await puppeteer.launch({ 
+    const browser = await puppeteer.launch({
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox'
@@ -21,14 +25,15 @@ const getSoundCloudInfo = async (url) => {
     })
     const page = await browser.newPage()
 
-    const info = await getMusicInfo(page, url)
+    const info = await SoundCloudScraping(page, URL)
     // console.log(info.artist)
     // console.log(info.title)
 
     browser.close()
     return info
   } catch (e) {
-    console.error(e)
+    console.log(`Not found URL: ${URL}`)
+    // console.error(e)
   }
 }
 
