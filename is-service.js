@@ -14,7 +14,6 @@ const is = {
         const YouTubeId = matchYouTube[1]
         const getData = await getYouTubeInfoById(YouTubeId, APIKey)
         if (!getData) { return null }
-        console.log(getData, msg.guild.id, 'youtube')
         firebase.submit(getData, msg.guild.id, 'youtube')
       }
     }
