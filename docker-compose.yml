@@ -1,0 +1,6 @@
+version: '3'
+ 
+services:
+  node:
+    build: .
+    container_name: discord-music-info-collection
