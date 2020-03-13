@@ -55,7 +55,7 @@ const getYouTubeInfoById = async (YouTubeId, APIKey) => {
   }
   return {
     url: YouTubeURL,
-    channel: getData.snippet.channelTitle,
+    uploader: getData.snippet.channelTitle,
     title: getData.snippet.title
   }
 }
