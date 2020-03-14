@@ -18,5 +18,6 @@ YouTube の情報は [YouTube Data API](https://developers.google.com/youtube/v3
 ## 起動
 
 ```bash
+npm install
 npm start
 ```
