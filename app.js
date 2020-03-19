@@ -18,16 +18,19 @@ client.on('ready', () => {
 })
 
 client.on('message', async msg => {
-  console.log(`message: ${msg.content}`)
+  const guildId = msg.guild.id
   if (msg.author.bot) {
     return
-  } else if (msg.content === '!list') {
-    msg.channel.send(`list => https://music-info-collection-bot.firebaseapp.com/${msg.guild.id}/youtube`)
+  } if (msg.content === '!list') {
+    msg.channel.send(`list => https://music-info-collection-bot.firebaseapp.com/${guildId}/youtube`)
   } else {
-    is.YouTube(msg)
-    is.SoundCloud(msg)
+    // console.log(`message: ${msg.content}`)
+    const content = msg.content.split('\n')
 
-    console.log(msg.guild.id)
+    for (line of content) {
+      is.YouTube(line, guildId)
+      is.SoundCloud(line, guildId)
+    }
   }
 })
 

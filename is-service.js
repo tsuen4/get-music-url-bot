@@ -22,15 +22,15 @@ const isMatch = (guildId, service, matchedText) => {
 }
 
 const is = {
-  async YouTube (msg) {
+  async YouTube (msg, guildId) {
     for (let el of reg.YouTube) {
-      const matchYouTube = msg.content.match(el)
-      isMatch(msg.guild.id, 'youtube', matchYouTube)
+      const matchYouTube = msg.match(el)
+      isMatch(guildId, 'youtube', matchYouTube)
     }
   },
-  async SoundCloud (msg) {
-    const matchSoundCloud = msg.content.match(reg.SoundCloud)
-    isMatch(msg.guild.id, 'soundcloud', matchSoundCloud)
+  async SoundCloud (msg, guildId) {
+    const matchSoundCloud = msg.match(reg.SoundCloud)
+    isMatch(guildId, 'soundcloud', matchSoundCloud)
   }
 }
 
