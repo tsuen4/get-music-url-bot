@@ -1,8 +1,6 @@
 # music-info-collection bot
 
-Discord サーバー上で、YouTube または SoundCloud の URL がメッセージに含まれていたら、そのタイトルと投稿者の情報を Firebase Realtime Database に記録する Discord bot です。（身内用に作りました。）
-
-YouTube の情報は [YouTube Data API](https://developers.google.com/youtube/v3/getting-started) を利用して取得し、SoundCloud の情報は [Puppeteer](https://github.com/puppeteer/puppeteer) でスクレイピングして取得しました。（API Key の新規取得ができないため）
+Discord サーバー上で、特定サイトの URL がメッセージに含まれていたら、そのサービス名と URL を Firebase Realtime Database に記録する Discord bot です。（身内用に作りました。）
 
 [フロントのリポジトリはこちらです。](https://github.com/tsuen4/music-info-collection-front)
 
@@ -13,7 +11,6 @@ YouTube の情報は [YouTube Data API](https://developers.google.com/youtube/v3
 - Firebase のプロジェクト (Firebase Realtime Database URL -> firebase.js)
 - Firebase Admin SDK の秘密鍵 (-> auth.json)
 - Discord Bot Token (-> .env/DISCORD_TOKEN="")
-- YouTube API Key (-> .env/YOUTUBE_API_KEY="")
 
 ## 起動
 

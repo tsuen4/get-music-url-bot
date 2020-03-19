@@ -8,16 +8,18 @@ exports.init = () => {
   })
 }
 
-exports.submit = (data, guildId, service) => {
+exports.submit = (data, time = new Date().getTime()) => {
+  const { service, guildId, url } = data
+  // console.log(service, guildId, url)
+
   const database = admin.database()
   database.ref(`guild/`).set({
     [guildId]: true
   })
 
-  database.ref(`tracks/${guildId}/${service}`).push({
-    url: data.url,
-    uploader: data.uploader,
-    title: data.title,
-    time: new Date().getTime()
+  database.ref(`tracks/${guildId}`).push({
+    service: service,
+    url: url,
+    time: time
   })
 }

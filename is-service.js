@@ -1,31 +1,36 @@
 const firebase = require('./firebase')
 
-const getYouTubeInfoById = require('./get-youtube-info')
-const getSoundCloudInfo = require('./get-soundcloud-info')
+const reg = {
+  YouTube: [
+    /(https:\/\/youtu\.be\/[^&]*)&?.*/,
+    /(https:\/\/www.youtube\.com\/watch\?v=[^&]*)&?.*/,
+    /(https:\/\/www.youtube\.com\/playlist\?list=[^&]*)&?.*/,
+  ],
+  SoundCloud: /(https:\/\/soundcloud\.com\/.+)/
+}
 
-const regYouTube = [/.*e\/([^&]*)&?.*$/, /.*watch\?v=([^&]*)&?.*/]
-const regSoundCloud = /(https:\/\/soundcloud\.com\/.+)/
+const isMatch = (guildId, service, matchedText) => {
+  if (matchedText) {
+    const url = matchedText[1]
+    const data = {
+      guildId: guildId,
+      service: service,
+      url: url
+    }
+    firebase.submit(data)
+  }
+}
 
 const is = {
-  async YouTube (msg, APIKey) {
-    for (let el of regYouTube) {
+  async YouTube (msg) {
+    for (let el of reg.YouTube) {
       const matchYouTube = msg.content.match(el)
-      if (matchYouTube) {
-        const YouTubeId = matchYouTube[1]
-        const getData = await getYouTubeInfoById(YouTubeId, APIKey)
-        if (!getData) { return null }
-        firebase.submit(getData, msg.guild.id, 'youtube')
-      }
+      isMatch(msg.guild.id, 'youtube', matchYouTube)
     }
   },
   async SoundCloud (msg) {
-    const matchSoundCloud = msg.content.match(regSoundCloud)
-    if (matchSoundCloud) {
-      const SoundCloudUrl = matchSoundCloud[1]
-      const getData = await getSoundCloudInfo(SoundCloudUrl)
-      if (!getData) { return null }
-      firebase.submit(getData, msg.guild.id, 'soundcloud')
-    }
+    const matchSoundCloud = msg.content.match(reg.SoundCloud)
+    isMatch(msg.guild.id, 'soundcloud', matchSoundCloud)
   }
 }
 

@@ -8,9 +8,8 @@ const is = require('./is-service')
 
 require('dotenv').config()
 const discordToken = process.env.DISCORD_TOKEN
-const youtubeAPIKey = process.env.YOUTUBE_API_KEY
-if (!discordToken || !youtubeAPIKey) {
-  console.error("Not found Discord token and YouTube API token.")
+if (!discordToken) {
+  console.error("Not found Discord token.")
   process.exit(1)
 }
 
@@ -25,7 +24,7 @@ client.on('message', async msg => {
   } else if (msg.content === '!list') {
     msg.channel.send(`list => https://music-info-collection-bot.firebaseapp.com/${msg.guild.id}/youtube`)
   } else {
-    is.YouTube(msg, youtubeAPIKey)
+    is.YouTube(msg)
     is.SoundCloud(msg)
 
     console.log(msg.guild.id)
