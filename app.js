@@ -25,11 +25,14 @@ client.on('message', async msg => {
     msg.channel.send(`list => https://music-info-collection-bot.firebaseapp.com/${guildId}/youtube`)
   } else {
     // console.log(`message: ${msg.content}`)
-    const content = msg.content.split('\n')
 
-    for (line of content) {
-      is.YouTube(line, guildId)
-      is.SoundCloud(line, guildId)
+    // 1 行ごとに見る
+    const content = msg.content.split('\n')
+    for (const line of content) {
+      // どのサービスに当てはまるか判定してもらう
+      for (const service of Object.keys(is)) {
+        is[service](line, guildId)
+      }
     }
   }
 })
