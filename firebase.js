@@ -10,8 +10,8 @@ exports.init = () => {
 }
 
 exports.submit = (data, time = new Date().getTime()) => {
-  const { service, guildId, url } = data
-  console.log(service, guildId, url)
+  const { guildId, service, url } = data
+  console.log(guildId, service, url)
 
   const database = admin.database()
   database.ref(`guild/`).set({
