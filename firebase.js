@@ -1,10 +1,11 @@
 const admin = require('firebase-admin')
 const serviceAccount = require('./auth.json')
+require('dotenv').config()
 
 exports.init = () => {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://music-info-collection-bot.firebaseio.com",
+    databaseURL: process.env.DB_URL,
   })
 }
 
