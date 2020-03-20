@@ -1,4 +1,4 @@
-# music-info-collection bot
+# get-music-url bot on Discord server
 
 Discord サーバー上で、特定サイトの URL がメッセージに含まれていたら、そのサービス名と URL を Firebase Realtime Database に記録する Discord bot です。（身内用に作りました。）
 
