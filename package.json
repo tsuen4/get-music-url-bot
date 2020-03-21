@@ -1,7 +1,7 @@
 {
-  "name": "discord-get-music-url",
+  "name": "discord-get-music-url-bot",
   "version": "1.0.0",
-  "description": "Discord のチャットに貼られた URL をどこかにまとめる何か",
+  "description": "Discord のチャットに貼られた音楽系の URL を Firebase Realtime Database にまとめる bot",
   "main": "index.js",
   "scripts": {
     "start": "node app.js"
