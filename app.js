@@ -22,7 +22,7 @@ client.on('message', async msg => {
   if (msg.author.bot) {
     return
   } if (msg.content === '!list') {
-    msg.channel.send(`list => https://music-info-collection-bot.firebaseapp.com/${guildId}/youtube`)
+    msg.channel.send(`list => ${process.env.SITE_URL}/${guildId}`)
   } else {
     // console.log(`message: ${msg.content}`)
 
