@@ -3,11 +3,10 @@ const firebase = require('./firebase')
 const reg = {
   YouTube: [
     /(https:\/\/youtu\.be\/[^&]*)&?.*/,
-    /(https:\/\/.*youtube\.com\/watch\?v=[^&]*)&?.*/,
-    /(https:\/\/.*youtube\.com\/playlist\?list=[^&]*)&?.*/,
+    /(https:\/\/(m\.)?youtube\.com\/watch\?v=[^&]*)&?.*/,
+    /(https:\/\/(m\.)?youtube\.com\/playlist\?list=[^&]*)&?.*/,
   ],
-  SoundCloud: /(https:\/\/soundcloud\.com\/.+)/,
-  Spotify: /(https:\/\/open\.spotify\.com\/[^?]*)\??.*/
+  SoundCloud: /(https:\/\/(m\.)?soundcloud\.com\/.+)/,
 }
 
 const isMatch = (guildId, service, matchedText) => {
