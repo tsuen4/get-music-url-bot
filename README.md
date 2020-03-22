@@ -1,13 +1,23 @@
 # get-music-url bot on Discord server
 
 Discord サーバー上で、特定サイトの URL がメッセージに含まれていたら、そのサービス名と URL を Firebase Realtime Database に記録する Discord bot です。（身内用に作りました。）
-現在は YouTube, SoundCloud, Spotify に対応しています。
 
 Discord 側に表示される埋め込みプレーヤーで遡るのが面倒になってしまったために作ったものです。
 
 [フロントのリポジトリはこちらです。](https://github.com/tsuen4/music-list-on-discord-server)
 
 ![preview](https://i.imgur.com/eRNCxpS.gif)
+
+## 対応サービス
+
+(正規表現間違えてたらごめんなさい。)
+
+- YouTube
+- SoundCloud
+- Spotify
+- Bandcamp
+- Beatport
+- Apple Music
 
 ## 必要なもの
 
