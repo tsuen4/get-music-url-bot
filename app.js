@@ -21,7 +21,7 @@ client.on('message', async msg => {
   const guildId = msg.guild.id
   if (msg.author.bot) {
     return
-  } if (msg.content === '!list') {
+  } else if (msg.content === '!list') {
     msg.channel.send(`list => ${process.env.SITE_URL}/${guildId}`)
   } else {
     // console.log(`message: ${msg.content}`)
