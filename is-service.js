@@ -7,6 +7,10 @@ const reg = {
     /(https:\/\/(m\.)?youtube\.com\/playlist\?list=[^&]*)&?.*/,
   ],
   SoundCloud: /(https:\/\/(m\.)?soundcloud\.com\/.+)/,
+  Spotify: /(https:\/\/open\.spotify\.com\/[^?]+)\??.*/,
+  Bandcamp: /(https:\/\/.*\.bandcamp.com\/.*)/,
+  AppleMusic: /(https:\/\/music\.apple\.com\/.+)/,
+  Beatport: /(https:\/\/www\.beatport\.com\/.+)/,
 }
 
 const isMatch = (guildId, service, matchedText) => {
@@ -21,7 +25,7 @@ const isMatch = (guildId, service, matchedText) => {
   }
 }
 
-const is = {
+const is = {  
   YouTube (msg, guildId) {
     for (let el of reg.YouTube) {
       const match = msg.match(el)
@@ -35,6 +39,18 @@ const is = {
   Spotify (msg, guildId) {
     const match = msg.match(reg.Spotify)
     isMatch(guildId, 'spotify', match)
+  },
+  Bandcamp (msg, guildId) {
+    const match = msg.match(reg.Bandcamp)
+    isMatch(guildId, 'bandcamp', match)
+  },
+  AppleMusic (msg, guildId) {
+    const match = msg.match(reg.AppleMusic)
+    isMatch(guildId, 'applemusic', match)
+  },
+  Bearport (msg, guildId) {
+    const match = msg.match(reg.Beatport)
+    isMatch(guildId, 'beatport', match)
   }
 }
 
