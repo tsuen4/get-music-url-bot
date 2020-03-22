@@ -7,7 +7,7 @@ const reg = {
     /(https:\/\/.*youtube\.com\/playlist\?list=[^&]*)&?.*/,
   ],
   SoundCloud: /(https:\/\/soundcloud\.com\/.+)/,
-  Spotify: /(https:\/\/open\.spotify\.com\/.+)/
+  Spotify: /(https:\/\/open\.spotify\.com\/[^?]*)\??.*/
 }
 
 const isMatch = (guildId, service, matchedText) => {
