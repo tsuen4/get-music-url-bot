@@ -3,8 +3,9 @@ const firebase = require('./firebase')
 const reg = {
   YouTube: [
     /(https:\/\/youtu\.be\/[^&]*)&?.*/,
-    /(https:\/\/(m\.)?youtube\.com\/watch\?v=[^&]*)&?.*/,
-    /(https:\/\/(m\.)?youtube\.com\/playlist\?list=[^&]*)&?.*/,
+    /(https:\/\/(m|www)\.youtube\.com\/watch\?v=[^&]*)&?.*/,
+    /(https:\/\/(m|www)\.youtube\.com\/playlist\?list=[^&]*)&?.*/,
+    /(https:\/\/(m|www)\.youtube\.com\/channel\/[^?]*).*/,
   ],
   SoundCloud: /(https:\/\/(m\.)?soundcloud\.com\/.+)/,
   Spotify: /(https:\/\/open\.spotify\.com\/[^?]+)\??.*/,
